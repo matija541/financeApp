@@ -1,3 +1,3 @@
 # financeApp
 
-blaa
+# program za vodenje financ porabe strskov in prihodkov

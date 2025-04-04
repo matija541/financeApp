@@ -1,42 +1,46 @@
 const calculator = document.querySelector("#calculator");
-const newDiv = document.createElement("div");
+const newDiv = document.querySelector(".rezultat");
 let trenutnaOperacija;
 let trenutnoStevilo="";
 let levDel;
 let desnDel;
+let posodabljanje = false;
+let mogoce;
 calculator.addEventListener('click', function (e) {
     if (e.target.tagName === 'BUTTON') {
       let buttonValue = e.target.textContent;
       console.log('Button clicked:', buttonValue);
         if(parseInt(buttonValue)){
             trenutnoStevilo+=buttonValue;
-            console.log(trenutnoStevilo);
-            levDel=parseInt(trenutnoStevilo);
+            console.log("Izpisujem trenutno stevilo na kalkulatorju: "+trenutnoStevilo);
         }else{
-            desnDel=parseInt(trenutnoStevilo);//pomozna
+            desnDel=parseInt(trenutnoStevilo);
             switch(buttonValue){
                 case "C":
                     trenutnoStevilo=""
                 case "/":
                     trenutnaOperacija="/"
-                    racunanje(desnDel,levDel,trenutnaOperacija);
                     break;
                 case "X":
                     trenutnaOperacija="*"
-                    racunanje(desnDel,levDel,trenutnaOperacija);
                     break;
                 case "-":
                     trenutnaOperacija="-"
-                    racunanje(desnDel,levDel,trenutnaOperacija);
                     break;
                 case "+":
-                    trenutnaOperacija="+"
-                    racunanje(desnDel,levDel,trenutnaOperacija) 
+                    trenutnaOperacija="+" 
+                    if(desnDel&&levDel){
+                        mogoce=racunanje(desnDel,levDel,trenutnaOperacija);
+                        posodabljanje = true;
+                    }
                     break;
                 case "=":
                     racunanje(desnDel,levDel,trenutnaOperacija);
                     break;
             }
+
+            //posodabljanje?levDel=parseInt(trenutnoStevilo):levDel=mogoce;
+            levDel=parseInt(trenutnoStevilo)
             trenutnoStevilo="";
         }
         if(buttonValue=="C"){
@@ -45,31 +49,35 @@ calculator.addEventListener('click', function (e) {
             newDiv.textContent += buttonValue;
         }
         calculator.prepend(newDiv);
-        console.log(levDel,desnDel)
+        console.log("lev del:"+levDel+" desn del: "+desnDel)
     }
   });
 
 
   function racunanje(desnDel,levDel,trenutnaOperacija){
     
-                    console.log(levDel,desnDel);
+                    //console.log(levDel,desnDel);
+                    let rezultat;
                     switch(trenutnaOperacija){
                         case "/":
-                            if(desnDel)newDiv.textContent = levDel/=desnDel;
-                            else newDiv.textContent = levDel/desnDel;
+                            rezultat = levDel/desnDel;
+                            newDiv.textContent = rezultat;
                             break;
                         case "*":
-                            newDiv.textContent = levDel*=desnDel;
+                            rezultat = levDel*desnDel;
+                            newDiv.textContent = rezultat;
                             break;
                         case "-":
-                            newDiv.textContent = levDel-=desnDel;
+                            rezultat = levDel-desnDel;
+                            newDiv.textContent = rezultat;
                             break;
                         case "+":
-                            if(desnDel)newDiv.textContent = levDel+=desnDel;
-                            else newDiv.textContent = levDel+desnDel;
+                            rezultat = levDel+desnDel;
+                            newDiv.textContent = rezultat;
                             break;
                         
                         }
                         console.log(trenutnaOperacija,levDel,desnDel);
                         calculator.prepend(newDiv);
+                        return rezultat;
   }

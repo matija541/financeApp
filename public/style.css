@@ -1,4 +1,50 @@
-h1{
-    color: red;
-    text-align: center;
+
+body{
+    background-color: #8ecae6;
+}
+#calculator{
+    border: 1px solid black;
+    border-radius: 10%;
+    padding: 60px;
+    background-color: #219ebc;
+}
+#centralni{
+    display: grid;
+    place-items: center;
+    height: 90vh;
+}
+.vrsta{
+    display: flex;
+}
+.prva{
+    margin-bottom: 5px;
+}
+.c, .del{
+    margin: 0 10px 0 0 ;
+}
+.stevilka{
+    padding: 20px;
+    margin: 10px;
+    border-radius: 50%;
+    background-color: #023047;
+    border: none;
+}
+.funkcije{
+    padding: 20px;
+    margin: 10px;
+    border-radius: 50%;
+    background-color: #ffb703;
+    border: none;
+}
+button{
+    font-size: 40px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.rezultat{
+    font-size: 40px;
+    padding: 20px;
+    margin: 10px;
+    height: 8vh;
 }
