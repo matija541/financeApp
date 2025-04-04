@@ -13,7 +13,7 @@ calculator.addEventListener('click', function (e) {
             console.log(trenutnoStevilo);
             levDel=parseInt(trenutnoStevilo);
         }else{
-            desnDel=parseInt(trenutnoStevilo);
+            desnDel=parseInt(trenutnoStevilo);//pomozna
             switch(buttonValue){
                 case "C":
                     trenutnoStevilo=""
